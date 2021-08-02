@@ -8,6 +8,7 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.PaintFlagsDrawFilter;
 import android.graphics.Path;
+import android.graphics.RectF;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
@@ -94,7 +95,6 @@ public class BigTurntableView extends View {
         measuredHeight = getMeasuredHeight();
     }
 
-    @SuppressLint("NewApi")
     @Override
     protected void onDraw(Canvas canvas) {
         int cX = measuredWidth / 2;
@@ -122,7 +122,9 @@ public class BigTurntableView extends View {
         if (isShowSelected) {
             mPaint.setColor(bigTurntableView_selectRegionColor);
             Path mPath = new Path();
-            mPath.addArc(cX - cR, cY - cR, cX + cR, cY + cR, selectBeginDegree, avgDegree);
+            RectF rectF = new RectF(cX - cR, cY - cR, cX + cR, cY + cR);
+            mPath.addArc(rectF, selectBeginDegree, avgDegree);
+//            mPath.addArc(cX - cR, cY - cR, cX + cR, cY + cR, selectBeginDegree, avgDegree);
             mPath.lineTo(cX, cY);
             mPath.close();
             canvas.drawPath(mPath, mPaint);//画选中的扇形区域颜色

@@ -1,6 +1,5 @@
 package com.dxh.myapplication.widget;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
@@ -51,22 +50,11 @@ public class BigTurntableView extends View {
 
     public BigTurntableView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
-        TypedArray typedArray = context.obtainStyledAttributes(attrs, getStyleableView());
         init(context, attrs);
-        typedArray.recycle();
     }
 
     public void init(Context context, @Nullable AttributeSet attrs) {
-        TypedArray typedArray = context.obtainStyledAttributes(attrs, getStyleableView());
-        onBaseInit(context, attrs, typedArray);
-        typedArray.recycle();
-    }
-
-    protected int[] getStyleableView() {
-        return R.styleable.BigTurntableView;
-    }
-
-    protected void onBaseInit(Context context, @Nullable AttributeSet attrs, TypedArray typedArray) {
+        TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.BigTurntableView);
         bigTurntableView_bgColor = typedArray.getColor(R.styleable.BigTurntableView_bigTurntableView_bgColor, bigTurntableView_bgColor);
         bigTurntableView_selectRegionColor = typedArray.getColor(R.styleable.BigTurntableView_bigTurntableView_selectRegionColor, bigTurntableView_selectRegionColor);
         bigTurntableView_lineColor = typedArray.getColor(R.styleable.BigTurntableView_bigTurntableView_lineColor, bigTurntableView_lineColor);
@@ -83,6 +71,7 @@ public class BigTurntableView extends View {
         rotateDegree = -avgDegree / 2;//默认选择角度
         mScroller = new Scroller(getContext(), new AccelerateDecelerateInterpolator());
         mPaint = new Paint();
+        typedArray.recycle();
     }
 
     private int measuredWidth;
@@ -124,7 +113,6 @@ public class BigTurntableView extends View {
             Path mPath = new Path();
             RectF rectF = new RectF(cX - cR, cY - cR, cX + cR, cY + cR);
             mPath.addArc(rectF, selectBeginDegree, avgDegree);
-//            mPath.addArc(cX - cR, cY - cR, cX + cR, cY + cR, selectBeginDegree, avgDegree);
             mPath.lineTo(cX, cY);
             mPath.close();
             canvas.drawPath(mPath, mPaint);//画选中的扇形区域颜色
@@ -185,7 +173,6 @@ public class BigTurntableView extends View {
                 lastX = viewX;
                 lastY = viewY;
                 rotateDegree = (int) (rotateDegree + disY);
-//                rotateDegree = (rotateDegree + 360 * 10000) % 360;
                 invalidate();
                 break;
             case MotionEvent.ACTION_UP:
@@ -330,6 +317,7 @@ public class BigTurntableView extends View {
         invalidate();
     }
 
+    //设置触摸事件是否有效
     public void setUseTouchEvent(boolean useTouchEvent) {
         isUseTouchEvent = useTouchEvent;
     }

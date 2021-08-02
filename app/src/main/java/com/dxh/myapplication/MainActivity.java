@@ -19,9 +19,11 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         initView();
+        bigTurntableView.setUseTouchEvent(false);//设置触摸事件是否有效
         btnAutoSelect.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //开启自动选择
                 bigTurntableView.startAutoSelect(new BigTurntableView.OnSelectedListener() {
                     @Override
                     public void onSelected(int posion, String[] bisectionContent) {

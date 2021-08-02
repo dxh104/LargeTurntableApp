@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--大转盘-->
+    <declare-styleable name="BigTurntableView">
+        <attr name="bigTurntableView_bgColor" format="color" /><!--转盘背景色-->
+        <attr name="bigTurntableView_selectRegionColor" format="color" /><!--选中区域颜色-->
+
+        <attr name="bigTurntableView_lineColor" format="color" /><!--分割线的颜色-->
+        <attr name="bigTurntableView_lineStrokeWidth" format="dimension" /><!--分割线的宽度-->
+
+        <attr name="bigTurntableView_arrowLineColor" format="color" /><!--箭头线的颜色-->
+
+        <attr name="bigTurntableView_textSize" format="dimension" /><!--文字的字体大小-->
+        <attr name="bigTurntableView_textColor" format="color" /><!--文字的颜色-->
+
+        <attr name="bigTurntableView_content" format="string" /><!--aa|bb|cc 传入转盘文字数据-->
+
+    </declare-styleable>
+</resources>
